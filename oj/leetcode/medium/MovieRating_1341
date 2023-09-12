@@ -1,0 +1,30 @@
+(select u.name results
+from
+(
+    select
+        mr.user_id id, count(mr.movie_id) mrCount
+    from
+        MovieRating mr
+    group by
+        mr.user_id
+) sec
+inner join Users u
+on sec.id = u.user_id
+order by mrCount desc, u.name asc
+limit 1
+)
+UNION ALL
+(
+select m.title results
+from
+(
+select mr.movie_id, avg(mr.rating) a
+from MovieRating mr
+    where mr.created_at between '2020-02-01' and '2020-02-28'
+group by mr.movie_id
+) mi
+left join Movies m
+on m.movie_id = mi.movie_id
+order by mi.a desc, m.title asc
+limit 1
+   )
