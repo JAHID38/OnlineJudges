@@ -11,6 +11,7 @@ public class MaximumProductofThreeNumbers_628 {
             product *= nums[i];
             i--;
         }
-        return product;
+
+        return Math.max(product, nums[0]*nums[1]*nums[nums.length-1]);
     }
 }
