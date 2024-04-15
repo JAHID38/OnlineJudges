@@ -8,5 +8,6 @@ public class ScoreOfAString_3110 {
             sum += Math.abs(s.charAt(i) - s.charAt(i+1));
         }
         return sum;
+        
     }
 }
